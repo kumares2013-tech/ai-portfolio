@@ -1,7 +1,7 @@
-# Card Math: a concept for choosing a credit card
+# Card Math: MoneySmart credit card prototype
 
 **Live:** https://kumares2013-tech.github.io/ai-portfolio/card-finder/
-*Unofficial concept by Kumares Velasamy. Not affiliated with MoneySmart or any bank.*
+*Built for my AI Builder application at MoneySmart. Unofficial concept by Kumares Velasamy, not affiliated with MoneySmart or any bank.*
 
 ## The problem I picked
 
