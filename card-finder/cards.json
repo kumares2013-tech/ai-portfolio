@@ -1,0 +1,1221 @@
+[
+  {
+    "id": "uob-one",
+    "name": "UOB One Card",
+    "bank": "UOB",
+    "type": "cashback",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "S$196.20 incl. GST, first-year waiver. 1st supplementary free, 2nd onwards S$98.10.",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 (55 and below); S$15,000 (56 and above) for Singaporeans/PR.",
+    "rate_unit": "percent",
+    "tiers": [
+      {
+        "tier": 1,
+        "min_spend_every_statement_month_sgd": 600,
+        "max_spend_sgd": 999.99,
+        "min_transactions_per_month": 10,
+        "quarterly_cashback_sgd": 60,
+        "monthly_equivalent_sgd": 20.0
+      },
+      {
+        "tier": 2,
+        "min_spend_every_statement_month_sgd": 1000,
+        "max_spend_sgd": 1999.99,
+        "min_transactions_per_month": 10,
+        "quarterly_cashback_sgd": 100,
+        "monthly_equivalent_sgd": 33.33
+      },
+      {
+        "tier": 3,
+        "min_spend_every_statement_month_sgd": 2000,
+        "max_spend_sgd": null,
+        "min_transactions_per_month": 10,
+        "quarterly_cashback_sgd": 200,
+        "monthly_equivalent_sgd": 66.67
+      }
+    ],
+    "earn_rules": [
+      {
+        "categories": [
+          "transport"
+        ],
+        "rate": 5.0,
+        "min_spend_sgd_per_month": 600,
+        "cap_sgd_per_month": 120,
+        "cap_applies_to": "additional cashback S$ per statement month, shared across ALL selected-merchant rules",
+        "notes": "ADDITIONAL to the fixed quarterly cashback. Grab (excl. wallet top-ups) and SimplyGo bus/MRT only: 5% at Tier 1-2, 6.67% at Tier 3. Non-Grab taxis/other ride-hailing earn nothing extra. Merchant-specific: prototype must assume the Grab/SimplyGo share of transport."
+      },
+      {
+        "categories": [
+          "online_shopping"
+        ],
+        "rate": 5.0,
+        "min_spend_sgd_per_month": 600,
+        "cap_sgd_per_month": 120,
+        "cap_applies_to": "shared S$120 additional-cashback cap",
+        "notes": "Shopee Singapore only (incl. Shopee Supermarket, excl. ShopeePay top-ups): 5% Tier 1-2, 6.67% Tier 3. Other online merchants earn nothing extra."
+      },
+      {
+        "categories": [
+          "dining"
+        ],
+        "rate": 5.0,
+        "min_spend_sgd_per_month": 600,
+        "cap_sgd_per_month": 120,
+        "cap_applies_to": "shared S$120 additional-cashback cap",
+        "notes": "McDonald's and GrabFood (GRAB* descriptor) only: 5% Tier 1-2, 6.67% Tier 3. Other restaurants earn nothing extra - assume only the McDonald's/GrabFood share."
+      },
+      {
+        "categories": [
+          "groceries"
+        ],
+        "rate": 2.67,
+        "min_spend_sgd_per_month": 1000,
+        "cap_sgd_per_month": 120,
+        "cap_applies_to": "shared S$120 additional-cashback cap",
+        "notes": "All MCC 5411 grocery/supermarket spend (w.e.f. 1 Jul 2025): NIL at Tier 1, 2.67% at Tier 2, 4.67% at Tier 3."
+      },
+      {
+        "categories": [
+          "petrol"
+        ],
+        "rate": 1.67,
+        "min_spend_sgd_per_month": 2000,
+        "cap_sgd_per_month": 120,
+        "cap_applies_to": "shared S$120 additional-cashback cap",
+        "notes": "Shell only, Tier 3 only (1.67%). NIL at Tier 1-2 and at other petrol brands."
+      },
+      {
+        "categories": [
+          "bills_utilities"
+        ],
+        "rate": 1.0,
+        "min_spend_sgd_per_month": 600,
+        "cap_sgd_per_month": 120,
+        "cap_applies_to": "shared S$120 additional-cashback cap",
+        "notes": "Singapore Power (SP) utilities only: 1% at all tiers. Telco bills earn nothing extra."
+      }
+    ],
+    "tier_rates": {
+      "grab_mcdonalds_shopee_simplygo": {
+        "tier1": 5.0,
+        "tier2": 5.0,
+        "tier3": 6.67
+      },
+      "groceries_mcc5411": {
+        "tier1": 0.0,
+        "tier2": 2.67,
+        "tier3": 4.67
+      },
+      "shell": {
+        "tier1": 0.0,
+        "tier2": 0.0,
+        "tier3": 1.67
+      },
+      "singapore_power": {
+        "tier1": 1.0,
+        "tier2": 1.0,
+        "tier3": 1.0
+      }
+    },
+    "base_rate": 0.03,
+    "base_rate_notes": "0.03% of the year's card spend, paid only if NO quarterly cashback was earned in the calendar year. Effectively zero.",
+    "exclusions": [
+      "Grab/ShopeePay wallet top-ups",
+      "EZ-Link/Transit top-ups",
+      "insurance (MCC 6300/5960)",
+      "education, hospitals, government, tax",
+      "AXS/SAM/CardUp/iPayMy bill-pay platforms",
+      "0% IPP instalments",
+      "parking (MCC 7523)",
+      "utilities are NOT excluded (SP earns 1% extra)"
+    ],
+    "tiered_logic": "Quarterly: every one of the 3 statement months in the quarter must reach the tier's spend (>=S$600 / >=S$1,000 / >=S$2,000) with at least 10 transactions; the LOWEST month decides the tier. Pays a FIXED S$60 / S$100 / S$200 per quarter (not a %), so spend above the threshold earns nothing more except the merchant bonuses. Merchant 'Additional Cashback' (tier_rates) is paid only if that quarter's tier is achieved, capped at S$120 per statement month. For a monthly estimate: fixed part = monthly_equivalent_sgd of the tier met by the user's monthly spend.",
+    "source_urls": [
+      "https://www.uob.com.sg/personal/cards/cashback/one-card.page",
+      "https://www.uob.com.sg/assets/pdfs/one_card_full_tnc.pdf",
+      "https://www.uob.com.sg/assets/pdfs/uob-one-credit-card-faq.pdf"
+    ],
+    "source_version": "T&C updated 22 Sep 2025 (ver 2.1); FAQ updated 19 Mar 2026",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "Whether the 10-transaction count and tier spend include supplementary cards (T&C says Card Transactions of principal and supplementary for spend)"
+    ]
+  },
+  {
+    "id": "uob-evol",
+    "name": "UOB EVOL Card",
+    "bank": "UOB",
+    "type": "cashback",
+    "annual_fee_sgd": 0,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "No annual fee for principal or supplementary w.e.f. 1 Jul 2026 (T&C clause 15).",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 (55 and below); S$15,000 (56 and above) for Singaporeans/PR.",
+    "rate_unit": "percent",
+    "earn_rules": [
+      {
+        "categories": [
+          "online_shopping"
+        ],
+        "rate": 10.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 30,
+        "cap_applies_to": "cashback S$ per statement month, SHARED between local online and local mobile-contactless spend",
+        "notes": "Local Online Spend = processed in Singapore as an online transaction (SGD). Foreign-currency online spend does NOT count here."
+      },
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "transport"
+        ],
+        "rate": 10.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 30,
+        "cap_applies_to": "same shared S$30 cap as online",
+        "notes": "ONLY if paid online (SGD) or in-store via Apple Pay / Google Pay / Samsung Pay contactless processed locally. A physical card tap or insert earns only 0.3%. The prototype cannot know the payment method - flag this to the user or ask. EZ-Link/TRANSIT* top-ups excluded."
+      },
+      {
+        "categories": [
+          "petrol"
+        ],
+        "rate": 10.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 30,
+        "cap_applies_to": "same shared S$30 cap",
+        "notes": "Shell and SPC transactions are fully excluded (0%). Other brands only via mobile contactless/online."
+      },
+      {
+        "categories": [
+          "bills_utilities",
+          "entertainment"
+        ],
+        "rate": 10.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 20,
+        "cap_applies_to": "cashback S$ per statement month for Selected Gym, Telco and Streaming",
+        "notes": "Telco (Singtel, StarHub, M1, Gomo, MyRepublic, Giga, CirclesLife under MCC 4812/4814), streaming (Netflix, Spotify, Disney+), named gyms. Electricity/water (MCC 4900) are EXCLUDED entirely. Cinemas/other entertainment fall to 0.3%."
+      },
+      {
+        "categories": [
+          "travel_overseas"
+        ],
+        "rate": 1.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "PROMOTION 26 Mar-31 Dec 2026: 1% bonus on foreign-currency spend (0.5% if processed in China or Europe), no min spend, no cap. The core T&C gives FX spend its own category with no stated rate, so outside the promo assume 0%. UOB charges no FX admin fee on this card."
+      },
+      {
+        "categories": [
+          "other"
+        ],
+        "rate": 0.3,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 30,
+        "cap_applies_to": "cashback S$ per statement month on Other Spend",
+        "notes": "0.3% on all other spend. Overall card cap S$80 per statement month (20 + 30 + 30)."
+      }
+    ],
+    "base_rate": 0.3,
+    "base_rate_notes": "If S$800 in a statement month is not met, 0.3% on all transactions. Total cap S$80/statement month.",
+    "exclusions": [
+      "Shell and SPC petrol",
+      "utilities MCC 4900",
+      "insurance",
+      "NETS",
+      "AXS/EZ-Link/Transit top-ups",
+      "education, hospitals, government",
+      "0% IPP"
+    ],
+    "tiered_logic": "Single threshold: S$800 per STATEMENT month unlocks the 10% categories. Caps: S$20 gym/telco/streaming, S$30 online+mobile contactless, S$30 other; S$80 overall.",
+    "source_urls": [
+      "https://www.uob.com.sg/personal/cards/cashback/evol-card/index.page",
+      "https://www.uob.com.sg/assets/pdfs/uob-evol-terms-and-conditions.pdf",
+      "https://www.uob.com.sg/assets/web-resources/personal/pdf/cards/cashback/evol-card/governing-uob-evol-card-tnc-cmpg202601.pdf"
+    ],
+    "source_version": "Cashback T&C updated 1 Jul 2026 (ver 2.2)",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "Base (non-promo) cashback rate on overseas foreign-currency spend - T&C names the category but lists no rate",
+      "Whether the 0.3% 'Other Spend' S$30 cap also applies when min spend is not met"
+    ]
+  },
+  {
+    "id": "ocbc-365",
+    "name": "OCBC 365 Credit Card",
+    "bank": "OCBC",
+    "type": "cashback",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "S$196.20 incl. GST, waived for the first TWO years; thereafter waived with S$10,000 spend in a card year.",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 (Singaporeans/PR 21-55); S$15,000 (above 55).",
+    "rate_unit": "percent",
+    "earn_rules": [
+      {
+        "categories": [
+          "petrol"
+        ],
+        "rate": 6.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "category cashback S$ per calendar month (S$80 if spend S$800-1,599; S$160 if >= S$1,600)",
+        "notes": "MCC 5541/5542, Singapore and overseas; fleet-card top-ups excluded."
+      },
+      {
+        "categories": [
+          "dining"
+        ],
+        "rate": 5.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "shared category cap",
+        "notes": "MCC 5811/5812 plus Foodpanda/GrabFood/Deliveroo under 5811/5812/5814. Hotel dining, banquets, phone/mail orders earn 0.25%. Plain fast food (5814) not listed except via delivery apps."
+      },
+      {
+        "categories": [
+          "groceries"
+        ],
+        "rate": 3.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "shared category cap",
+        "notes": "MCC 5411, in-store and online, Singapore and overseas."
+      },
+      {
+        "categories": [
+          "transport"
+        ],
+        "rate": 3.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "shared category cap",
+        "notes": "MCC 4011/4111/4112/4121/4131 incl. taxis/ride-hailing and SimplyGo contactless fares. EZ-Link/Transit Link top-ups excluded."
+      },
+      {
+        "categories": [
+          "bills_utilities"
+        ],
+        "rate": 3.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "shared category cap",
+        "notes": "Only RECURRING telco and electricity bills charged monthly via recurring payment. Other bills 0.25%."
+      },
+      {
+        "categories": [
+          "entertainment"
+        ],
+        "rate": 3.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "shared category cap",
+        "notes": "Streaming only (MCC 4899, Spotify, Apple.com/bill, iTunes). Also 3% on Watsons and EV charging (MCC 5552) - not mapped. Cinemas earn 0.25%."
+      },
+      {
+        "categories": [
+          "online_shopping",
+          "travel_overseas",
+          "other"
+        ],
+        "rate": 0.25,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "Base rate. Overseas dining/groceries/petrol still earn their category rate (T&C covers overseas)."
+      }
+    ],
+    "earn_rules_from_2026_11_01": [
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "transport",
+          "petrol"
+        ],
+        "rate": 6.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 160,
+        "cap_applies_to": "category cashback S$ per calendar month, single cap",
+        "notes": "New T&C effective 1 Nov 2026: 6% on dining (5811/5812/5814), groceries (5411), land transport, petrol; 3% Watsons (till 31 Mar 2027). Utilities, streaming and EV charging lose their bonus. Single tier: S$800 min spend, S$160 cap."
+      },
+      {
+        "categories": [
+          "bills_utilities",
+          "entertainment",
+          "online_shopping",
+          "travel_overseas",
+          "other"
+        ],
+        "rate": 0.25,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "Base rate."
+      }
+    ],
+    "base_rate": 0.25,
+    "base_rate_notes": "0.25% on everything if S$800 calendar-month min spend is not met, and on non-category spend if it is met. No cap on base.",
+    "exclusions": [
+      "transactions on the OCBC Cards Rewards Exclusion List",
+      "insurance",
+      "education, hospitals, government, tax",
+      "EZ-Link/Transit Link top-ups",
+      "bill payments via internet banking/AXS/SAM",
+      "ShopeePay (MCC 5262)",
+      "parking"
+    ],
+    "tiered_logic": "Current (to 31 Oct 2026): calendar-month spend >= S$800 unlocks category rates with a S$80 cap; >= S$1,600 raises the cap to S$160. From 1 Nov 2026: single S$800 threshold, 6% on four categories, S$160 cap. Use earn_rules_from_2026_11_01 for any month from Nov 2026.",
+    "source_urls": [
+      "https://www.ocbc.com/personal-banking/cards/365-cashback-credit-card",
+      "https://www.ocbc.com/iwov-resources/sg/ocbc/personal/pdf/cards/tncs-governing-365-cc-cashback-programme.pdf",
+      "https://www.ocbc.com/iwov-resources/sg/ocbc/personal/pdf/cards/tncs-governing-365-cc-cashback-programme-wef1nov26.pdf"
+    ],
+    "source_version": "Current T&C version 11 Apr 2025; new T&C version 1 Nov 2026",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "Whether the current S$80/S$160 cap covers only category cashback or also base cashback (new T&C says category only)"
+    ]
+  },
+  {
+    "id": "citi-cash-back",
+    "name": "Citi Cash Back Card",
+    "bank": "Citibank",
+    "type": "cashback",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": null,
+    "annual_fee_notes": "S$196.20 incl. 9% GST (information sheet). First-year waiver not stated on the bank page checked.",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 Singaporeans/PR; S$42,000 foreigners.",
+    "rate_unit": "percent",
+    "earn_rules": [
+      {
+        "categories": [
+          "petrol"
+        ],
+        "rate": 8.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "TOTAL cashback S$ per statement month across all spend (incl. base)",
+        "notes": "0.2% base + 7.8% bonus. MCC 5541/5542, worldwide."
+      },
+      {
+        "categories": [
+          "transport"
+        ],
+        "rate": 8.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "shared S$80 total cap",
+        "notes": "'Private Commute' only: MCC 4121 with descriptors GRAB, COMFORT/CITYCAB, GOJEK, CABCHARGE ASIA, TADA, RYDE, TRANSCAB, PREMIER TAXIS, STRIDES TAXI. Public transport (MRT/bus) is 'transit-related' and EXCLUDED - it earns nothing and does not count toward min spend."
+      },
+      {
+        "categories": [
+          "dining"
+        ],
+        "rate": 6.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "shared S$80 total cap",
+        "notes": "0.2% + 5.8%. MCC 5811/5812/5814, worldwide."
+      },
+      {
+        "categories": [
+          "groceries"
+        ],
+        "rate": 6.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "shared S$80 total cap",
+        "notes": "0.2% + 5.8%. MCC 5411, worldwide."
+      },
+      {
+        "categories": [
+          "online_shopping",
+          "entertainment",
+          "travel_overseas",
+          "other"
+        ],
+        "rate": 0.2,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 80,
+        "cap_applies_to": "shared S$80 total cap",
+        "notes": "Base on qualifying retail spend."
+      }
+    ],
+    "base_rate": 0.2,
+    "base_rate_notes": "0.2% on qualifying retail spend; the bonus needs S$800 qualifying spend per STATEMENT month.",
+    "exclusions": [
+      "bill payments (incl. Citi PayAll)",
+      "transit-related transactions",
+      "insurance",
+      "education",
+      "government, tax, parking",
+      "e-wallet/prepaid top-ups",
+      "financial institutions",
+      "Citi rewards exclusion list"
+    ],
+    "tiered_logic": "Single threshold: S$800 posted qualifying retail spend per statement month unlocks the bonus. S$80 overall cap per statement month.",
+    "source_urls": [
+      "https://www.citibank.com.sg/credit-cards/cashback/cash-back-card",
+      "https://www.citibank.com.sg/credit-cards/cashback/citi-cash-back-card/pdf/frequently-asked-questions.pdf",
+      "https://www.citibank.com.sg/credit-cards/cashback/citi-cash-back-card/pdf/information-sheet.pdf"
+    ],
+    "source_version": "FAQ dated 04/2024 (rates effective 1 Apr 2024); info sheet effective 1 Jan 2024",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "first_year_fee_waived",
+      "bills_utilities: bill payments are excluded, so rate is 0 (not listed in earn_rules)"
+    ]
+  },
+  {
+    "id": "dbs-live-fresh",
+    "name": "DBS Live Fresh Card",
+    "bank": "DBS",
+    "type": "cashback",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "Principal S$196.20, supplementary S$98.10; 1-year fee waiver.",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 (55 and below); S$15,000 (56 and above); foreigners S$45,000.",
+    "rate_unit": "percent",
+    "earn_rules": [
+      {
+        "categories": [
+          "online_shopping"
+        ],
+        "rate": 6.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 50,
+        "cap_applies_to": "BONUS cashback S$ per calendar month for Shopping Spend (base 0.3% uncapped)",
+        "notes": "0.3% + 5.7%. Shopping = apparel, department stores (5311), marketplaces (5262), electronics, home furnishing, specialty retail, watches/jewellery, personal services - in-store OR online, Singapore or overseas. In-store fashion etc. in 'other' would also qualify but is not modelled."
+      },
+      {
+        "categories": [
+          "transport"
+        ],
+        "rate": 6.0,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 20,
+        "cap_applies_to": "BONUS cashback S$ per calendar month for Transport Spend",
+        "notes": "0.3% + 5.7%. Public transport (4011/4111/4112/4131), taxis and ride-hailing (4121). Excludes EZ-Link/TRANSIT* top-ups."
+      },
+      {
+        "categories": [
+          "travel_overseas"
+        ],
+        "rate": 3.55,
+        "min_spend_sgd_per_month": 800,
+        "cap_sgd_per_month": 50,
+        "cap_applies_to": "extra 3.25% capped at S$50 per calendar month",
+        "notes": "0.3% + extra 3.25% on IN-STORE point-of-sale spend in selected Asian currencies (BND, KHR, RMB, HKD, IDR, JPY, LAK, MYR, MNT, MMK, PHP, KRW, TWD, THB, VND). The 3.25% exists to OFFSET the FX fees (2.25% DBS + 1% Visa), so the NET gain is only ~0.3%. Online FX, DCC and mobile-wallet/app payments excluded. Non-Asian currencies: 0.3% gross, minus FX fees."
+      },
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "petrol",
+          "bills_utilities",
+          "entertainment",
+          "other"
+        ],
+        "rate": 0.3,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "Base 0.3% on All Spend, no cap. bills_utilities: electricity/water/gas (MCC 4900) are EXCLUDED (0%); only telco-type bills paid by card earn 0.3%."
+      }
+    ],
+    "base_rate": 0.3,
+    "base_rate_notes": "0.3% on all eligible spend, uncapped. Bonus needs S$800 in the same CALENDAR month (transaction date).",
+    "exclusions": [
+      "utilities MCC 4900",
+      "insurance",
+      "AXS/SAM/internet-banking bill payments",
+      "EZ-Link/TRANSIT/ShopeePay/YouTrip top-ups",
+      "education, hospitals, government, tax",
+      "0% IPP / My Preferred Payment Plan instalments",
+      "crypto/brokers"
+    ],
+    "tiered_logic": "Single threshold: S$800 per calendar month. Bonus caps: S$50 Shopping, S$20 Transport, S$50 In-store Overseas (Asia) = S$120 maximum bonus.",
+    "source_urls": [
+      "https://www.dbs.com.sg/personal/cards/credit-cards/live-fresh-dbs-visa-paywave-platinum-card",
+      "https://www.dbs.com.sg/iwov-resources/media/pdf/cards/live-fresh-cashback-tnc.pdf",
+      "https://www.dbs.com.sg/iwov-resources/media/pdf/cards/promotions/livefresh-325fx/dbs-livefresh-325fx-tncs.pdf"
+    ],
+    "source_version": "Cashback T&C last updated 16 Jan 2026; FX promotion T&C last updated 30 Apr 2025 (no end date stated)",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "End date of the 3.25% in-store overseas promotion (T&C refers to a 'Promotion Period' but none is stated)"
+    ]
+  },
+  {
+    "id": "hsbc-live-plus",
+    "name": "HSBC Live+ Credit Card",
+    "bank": "HSBC",
+    "type": "cashback",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "S$180 (S$196.20 incl. GST) per HSBC tariff sheet; waived first year; from year 2 waived if you spend more than S$12,500 a year. Supplementary cards free.",
+    "min_income_sgd": 65000,
+    "min_income_notes": "Singaporean/PR salaried: S$65,000 for new HSBC customers; S$30,000 only if existing customer with Total Relationship Balance >= S$50,000.",
+    "rate_unit": "percent",
+    "earn_rules": [
+      {
+        "categories": [
+          "dining"
+        ],
+        "rate": 5.0,
+        "min_spend_sgd_per_month": 600,
+        "cap_sgd_per_month": 83.33,
+        "cap_applies_to": "total cashback capped at S$250 per CALENDAR QUARTER (83.33 is the monthly equivalent)",
+        "notes": "MCC 5811/5812/5814/5462, excl. hotel dining. New cardholders issued 1 Apr 2025-31 Mar 2027 get an extra 3% (8% total) for their first 2 quarters."
+      },
+      {
+        "categories": [
+          "online_shopping"
+        ],
+        "rate": 5.0,
+        "min_spend_sgd_per_month": 600,
+        "cap_sgd_per_month": 83.33,
+        "cap_applies_to": "shared S$250/quarter cap",
+        "notes": "'Shopping' MCCs (5262 marketplaces, 5309-5331 department/discount/variety, apparel/shoes 5611-5699, 5941 sporting, 5948 luggage) - online OR in-store. Online electronics and general online merchants outside these MCCs earn 0.3%."
+      },
+      {
+        "categories": [
+          "entertainment"
+        ],
+        "rate": 5.0,
+        "min_spend_sgd_per_month": 600,
+        "cap_sgd_per_month": 83.33,
+        "cap_applies_to": "shared S$250/quarter cap",
+        "notes": "MCC 4899 streaming/pay TV, 5735 record stores, 5815 digital media, 7832 cinemas."
+      },
+      {
+        "categories": [
+          "petrol"
+        ],
+        "rate": 5.0,
+        "min_spend_sgd_per_month": 600,
+        "cap_sgd_per_month": 83.33,
+        "cap_applies_to": "shared S$250/quarter cap",
+        "notes": "Caltex and Shell in Singapore only (MCC 5541/5542). Other brands 0.3%."
+      },
+      {
+        "categories": [
+          "groceries",
+          "transport",
+          "travel_overseas",
+          "other"
+        ],
+        "rate": 0.3,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 83.33,
+        "cap_applies_to": "shared S$250/quarter cap",
+        "notes": "0.3% on all other eligible purchases."
+      }
+    ],
+    "base_rate": 0.3,
+    "base_rate_notes": "0.3% on non-bonus spend always; bonus categories drop to 0.3% if the min spend is missed.",
+    "exclusions": [
+      "utilities (MCC 4900) - no cashback at all",
+      "insurance",
+      "education",
+      "government, tax, fines",
+      "e-wallet/EZ-Link/YouTrip top-ups",
+      "AXS/ATM",
+      "CardUp/iPayMy/PayPal money transfers",
+      "instalment plans",
+      "professional services, ads"
+    ],
+    "tiered_logic": "Quarterly: S$600 eligible spend in EACH of the 3 months of a calendar quarter (card-issue quarter: S$1,000 total instead). Cap S$250 per calendar quarter on ALL cashback. Credited within 2 months after quarter end.",
+    "source_urls": [
+      "https://www.hsbc.com.sg/credit-cards/products/liveplus/",
+      "https://www.hsbc.com.sg/content/dam/hsbc/sg/documents/credit-cards/liveplus/terms-and-conditions-cashback.pdf",
+      "https://www.hsbc.com.sg/content/dam/hsbc/sg/documents/retail-banking-wealth-management-bank-tariffs.pdf"
+    ],
+    "source_version": "Cashback T&C effective 13 Mar 2026",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "Whether the S$250 quarterly cap includes the 0.3% base (T&C clause 10 says 'any Cashback credited under this Programme', read as yes)"
+    ]
+  },
+  {
+    "id": "citi-premiermiles",
+    "name": "Citi PremierMiles Card",
+    "bank": "Citibank",
+    "type": "miles",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": null,
+    "annual_fee_notes": "S$196.20 incl. GST. 10,000 Citi Miles credited on renewal when the fee is paid (reversed if you get it waived). First year depends on the welcome offer chosen: 30,000 bonus miles with fee charged, OR first-year waiver + 8,000 miles.",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 Singaporeans/PR; S$42,000 foreigners.",
+    "rate_unit": "miles_per_sgd",
+    "earn_rules": [
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "transport",
+          "online_shopping",
+          "petrol",
+          "entertainment",
+          "other"
+        ],
+        "rate": 1.2,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "1.2 Citi Miles per S$1 local (SGD) spend, uncapped."
+      },
+      {
+        "categories": [
+          "travel_overseas"
+        ],
+        "rate": 2.2,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "2.2 Citi Miles per S$1 foreign-currency spend, uncapped. Citi FX admin fee up to 3.25% applies (info sheet)."
+      }
+    ],
+    "base_rate": 1.2,
+    "exclusions": [
+      "Citi Rewards Exclusion List MCCs",
+      "bill payments",
+      "insurance",
+      "education",
+      "government",
+      "e-wallet top-ups",
+      "financial institutions"
+    ],
+    "tiered_logic": null,
+    "miles_value_note": "Citi Miles never expire. Prototype default assumption: value 1 airline mile at S$0.015 (1.5 cents) - this is NOT a bank figure; make it user-adjustable. Earning below assumes miles = KrisFlyer/Asia Miles-equivalent after conversion. Bonus up to 10 mpd on kaligo.com and 7.2 mpd on agoda.com via dedicated links (not modelled). Points transfer fee S$27.25 incl. GST per transfer.",
+    "source_urls": [
+      "https://www.citibank.com.sg/credit-cards/travel/premiermiles-card",
+      "https://www.citibank.com.sg/content/dam/cgcpc/sg/prelogin/www-citibank-com-sg/pdf/global_docs/Citi-PremierMiles-Card-FAQs.pdf"
+    ],
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "first_year_fee_waived (offer-dependent)",
+      "Citi Miles to KrisFlyer ratio assumed 1:1 - not stated on the bank pages checked",
+      "bills_utilities earn rate (assumed 0, bill payments excluded)"
+    ]
+  },
+  {
+    "id": "dbs-altitude",
+    "name": "DBS Altitude Visa Signature Card",
+    "bank": "DBS",
+    "type": "miles",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "S$196.20 incl. GST, 1-year waiver. The S$25,000-spend waiver for later years CEASED w.e.f. 1 Aug 2026. 5,000 DBS Points (10,000 miles) credited when the renewal fee is charged.",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 (55 and below); S$15,000 (56 and above); foreigners S$45,000.",
+    "rate_unit": "miles_per_sgd",
+    "earn_rules": [
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "transport",
+          "online_shopping",
+          "petrol",
+          "entertainment",
+          "other"
+        ],
+        "rate": 1.3,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "3.25 DBS Points per S$5 SGD spend = 1.3 mpd, uncapped. Points computed per transaction in S$5 blocks (rounded down)."
+      },
+      {
+        "categories": [
+          "travel_overseas"
+        ],
+        "rate": 2.2,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "5.5 DBS Points per S$5 foreign-currency spend = 2.2 mpd. DCC (charged in SGD overseas) counts as local."
+      }
+    ],
+    "base_rate": 1.3,
+    "exclusions": [
+      "DBS Rewards Programme exclusions (clause 2.6)",
+      "utilities",
+      "insurance",
+      "education",
+      "government",
+      "e-wallet/EZ-Link top-ups",
+      "AXS/SAM bill payments"
+    ],
+    "tiered_logic": null,
+    "miles_value_note": "1 DBS Point = 2 miles; DBS Points on this card never expire; conversion fee S$27.25 incl. GST per conversion. Prototype default assumption: value 1 airline mile at S$0.015 (1.5 cents) - this is NOT a bank figure; make it user-adjustable. Earning below assumes miles = KrisFlyer/Asia Miles-equivalent after conversion.",
+    "source_urls": [
+      "https://www.dbs.com.sg/personal/cards/credit-cards/dbs-altitude-cards",
+      "https://www.dbs.com.sg/iwov-resources/pdf/cards/altitude-card-tnc.pdf"
+    ],
+    "source_version": "T&C last updated September 2026",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "Exact exclusion list (lives in the separate DBS Rewards Programme T&C, not read)",
+      "bills_utilities earn rate (assumed 0)"
+    ]
+  },
+  {
+    "id": "uob-prvi-miles",
+    "name": "UOB PRVI Miles Card (Visa / World Mastercard)",
+    "bank": "UOB",
+    "type": "miles",
+    "annual_fee_sgd": 261.6,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "S$261.60 incl. GST, first-year waiver; first supplementary free, then S$130.80. (The AMEX variant has a spend-based waiver - not modelled.)",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 (55 and below); S$15,000 (56 and above).",
+    "rate_unit": "miles_per_sgd",
+    "earn_rules": [
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "transport",
+          "online_shopping",
+          "entertainment",
+          "other"
+        ],
+        "rate": 1.4,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "UNI$3.5 per S$5 local spend = 1.4 mpd, uncapped. SimplyGo bus/train fares also earn 1.4 mpd."
+      },
+      {
+        "categories": [
+          "petrol"
+        ],
+        "rate": 1.4,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "Shell and SPC are EXCLUDED on the Visa/Mastercard (0 miles). Other brands 1.4 mpd - prototype should warn."
+      },
+      {
+        "categories": [
+          "travel_overseas"
+        ],
+        "rate": 2.4,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "UNI$6 per S$5 = 2.4 mpd on foreign-currency spend. 3.0 mpd (UNI$7.5/S$5) for 'Regional' spend in IDR, MYR, THB, VND with merchants in those countries. SGD-charged overseas spend and FX online spend via a Singapore gateway earn 1.4."
+      }
+    ],
+    "base_rate": 1.4,
+    "exclusions": [
+      "utilities MCC 4900",
+      "bill payments, top-ups, payment service providers",
+      "Shell and SPC petrol",
+      "insurance",
+      "education, hospitals, government",
+      "NETS",
+      "AXS/EZ-Link/TRANSIT top-ups",
+      "0% IPP"
+    ],
+    "tiered_logic": null,
+    "miles_value_note": "UNI$1 = 2 miles; a conversion fee applies per conversion (amount not in the T&C). Prototype default assumption: value 1 airline mile at S$0.015 (1.5 cents) - this is NOT a bank figure; make it user-adjustable. Earning below assumes miles = KrisFlyer/Asia Miles-equivalent after conversion. Up to 8 mpd on Expedia/Agoda PRVI links (not modelled).",
+    "source_urls": [
+      "https://www.uob.com.sg/personal/cards/travel/prvi-miles-card.page",
+      "https://www.uob.com.sg/assets/pdfs/terms-and-conditions-governing-uob-prvi-miles-card.pdf"
+    ],
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "UNI$ conversion fee amount",
+      "UNI$ expiry period for PRVI",
+      "rounding: UNI$ awarded per transaction, rounded down - small transactions earn less than 1.4 mpd"
+    ]
+  },
+  {
+    "id": "hsbc-revolution",
+    "name": "HSBC Revolution Credit Card",
+    "bank": "HSBC",
+    "type": "miles",
+    "annual_fee_sgd": 0,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "Annual fee 'Nil' in the HSBC tariff sheet; product page: 'We're waiving your HSBC Revolution Credit Card annual fee.'",
+    "min_income_sgd": 65000,
+    "min_income_notes": "Singaporean salaried: S$65,000 for new HSBC customers; S$30,000 only for existing customers with TRB >= S$50,000.",
+    "rate_unit": "miles_per_sgd",
+    "earn_rules": [
+      {
+        "categories": [
+          "dining"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "eligible SPEND S$ per calendar month (9,000 bonus points cap)",
+        "notes": "10 points/S$1 = 4 mpd, ONLY if paid contactless (Visa payWave/Apple/Google/Samsung Pay) or online. MCC 5811/5812/5813/5441/5462; fast food 5814 is NOT listed; hotel dining excluded. Chip/insert payments earn 1 point (0.4 mpd)."
+      },
+      {
+        "categories": [
+          "transport"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "shared S$1,000 eligible-spend cap",
+        "notes": "Taxis/ride-hailing MCC 4121 only (contactless or in-app). Public transport (4111/4112) is NOT an eligible MCC: 0.4 mpd."
+      },
+      {
+        "categories": [
+          "online_shopping"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "shared S$1,000 eligible-spend cap",
+        "notes": "Department/retail MCCs incl. 5262 marketplaces, 5311, 5399, apparel, 5732 electronics, 5734/5735, 5912 pharmacies, 5942-5949, 5964-5969 direct marketing, 5999, 4816, 5045."
+      },
+      {
+        "categories": [
+          "travel_overseas"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "shared S$1,000 eligible-spend cap",
+        "notes": "Airlines (3000-3350, 4511), car rental, hotels (3501-3999, 7011), cruise (4411) booked online or paid contactless - in ANY currency. Other foreign-currency spend earns only 0.4 mpd (no FX bonus); HSBC FX fee 2.25% + up to 1% scheme fee. Prototype: this rule applies only to the travel-booking share."
+      },
+      {
+        "categories": [
+          "groceries",
+          "petrol",
+          "entertainment",
+          "other"
+        ],
+        "rate": 0.4,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "1 point/S$1 = 0.4 mpd. Supermarkets (5411), petrol, cinemas and streaming are NOT eligible MCCs."
+      }
+    ],
+    "base_rate": 0.4,
+    "exclusions": [
+      "utilities MCC 4900 - no points",
+      "insurance",
+      "education",
+      "government, tax",
+      "e-wallet/EZ-Link/YouTrip top-ups",
+      "AXS/ATM",
+      "CardUp/iPayMy/PayPal transfers",
+      "professional services, ads (Google/Facebook)",
+      "instalment plans"
+    ],
+    "tiered_logic": "No min spend. Bonus 9 points/S$1 capped at 9,000 bonus points per calendar month (= S$1,000 eligible spend). Variant: 19 bonus points (8 mpd) with cap 22,800 if the cardholder keeps S$50,000 ADB in an HSBC Everyday Global Account - not modelled.",
+    "miles_value_note": "25,000 HSBC points = 10,000 Asia Miles (0.4 mile per point), per HSBC's own page. Prototype default assumption: value 1 airline mile at S$0.015 (1.5 cents) - this is NOT a bank figure; make it user-adjustable. Earning below assumes miles = KrisFlyer/Asia Miles-equivalent after conversion.",
+    "source_urls": [
+      "https://www.hsbc.com.sg/credit-cards/products/revolution/",
+      "https://www.hsbc.com.sg/content/dam/hsbc/sg/documents/credit-cards/revolution/offers/revolution-credit-card-reward-points-terms-and-conditions.pdf",
+      "https://www.hsbc.com.sg/content/dam/hsbc/sg/documents/retail-banking-wealth-management-bank-tariffs.pdf"
+    ],
+    "source_version": "Reward points T&C effective 1 Apr 2026",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "Payment method (contactless/online vs chip) - prototype cannot know; the 4 mpd rules assume contactless/online",
+      "HSBC points transfer fee",
+      "KrisFlyer ratio (page quotes Asia Miles)"
+    ]
+  },
+  {
+    "id": "dbs-womans-world",
+    "name": "DBS Woman's World Card",
+    "bank": "DBS",
+    "type": "miles",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "Principal S$196.20, supplementary S$98.10; 1-year waiver. The S$25,000-spend waiver ceased w.e.f. 1 Aug 2026.",
+    "min_income_sgd": 80000,
+    "min_income_notes": "S$80,000 p.a. for the Woman's World Card (the lower-tier DBS Woman's Card needs S$30,000 and earns only 2 mpd online).",
+    "rate_unit": "miles_per_sgd",
+    "earn_rules": [
+      {
+        "categories": [
+          "online_shopping"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "eligible ONLINE SPEND S$ per calendar month for the bonus",
+        "notes": "10X DBS Points per S$5 = 4 mpd on online spend (SGD: 1 base + 9 bonus; foreign-currency online: 1 base + 2 overseas + 7 online). Bonus only on the first S$1,000 of online spend per calendar month; beyond that 0.4 mpd (1.2 if foreign currency). Online food delivery and in-app ride-hailing are also 'online' - prototype cannot tell; flag it."
+      },
+      {
+        "categories": [
+          "travel_overseas"
+        ],
+        "rate": 1.2,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "3X DBS Points per S$5 = 1.2 mpd on in-store foreign-currency spend. Online FX spend: see online rule (4 mpd)."
+      },
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "transport",
+          "petrol",
+          "entertainment",
+          "other"
+        ],
+        "rate": 0.4,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "1X DBS Point per S$5 = 0.4 mpd (in-store SGD spend)."
+      }
+    ],
+    "base_rate": 0.4,
+    "exclusions": [
+      "utilities MCC 4900",
+      "insurance",
+      "advertising (7311), professional services",
+      "education, hospitals, government, tax",
+      "AXS/SAM/internet-banking bill payments",
+      "EZ-Link/ShopeePay/YouTrip/crypto",
+      "0% IPP"
+    ],
+    "tiered_logic": "No min spend. Online bonus capped at the first S$1,000 of online spend per calendar month.",
+    "miles_value_note": "1 DBS Point = 2 miles; conversion fee S$27.25 incl. GST (DBS). Points computed in S$5 blocks per transaction/month. Prototype default assumption: value 1 airline mile at S$0.015 (1.5 cents) - this is NOT a bank figure; make it user-adjustable. Earning below assumes miles = KrisFlyer/Asia Miles-equivalent after conversion.",
+    "source_urls": [
+      "https://www.dbs.com.sg/personal/cards/credit-cards/dbs-woman-mastercard-card",
+      "https://www.dbs.com.sg/iwov-resources/media/pdf/cards/dbs-womans-card-tnc.pdf"
+    ],
+    "source_version": "T&C updated 27 Jul 2026",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "DBS Points expiry for this card (not stated in the T&C read)",
+      "bills_utilities earn rate (assumed 0: utilities excluded)"
+    ]
+  },
+  {
+    "id": "uob-ladys",
+    "name": "UOB Lady's Card",
+    "bank": "UOB",
+    "type": "miles",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "S$196.20 incl. GST (Lady's Classic/Platinum/World Mastercard) per T&C clause 27, waived first year. Solitaire variants cost more and are not modelled.",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 Singaporeans/PR (Solitaire: S$120,000).",
+    "rate_unit": "miles_per_sgd",
+    "choose_one": true,
+    "earn_rules": [
+      {
+        "categories": [
+          "dining"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "eligible SPEND S$ per calendar month (1,800 bonus UNI$)",
+        "notes": "PREFERRED CATEGORY 'Dining' - MCC 5811/5812/5814/5499 incl. food delivery. Only if the user picks Dining."
+      },
+      {
+        "categories": [
+          "groceries"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "same S$1,000 cap",
+        "notes": "PREFERRED CATEGORY 'Family' - MCC 5411 groceries + 5641 children's wear."
+      },
+      {
+        "categories": [
+          "transport",
+          "petrol"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "same S$1,000 cap",
+        "notes": "PREFERRED CATEGORY 'Transport' - MCC 4111, 4121, 4789, 5541, 5542 (taxis, ride-hailing, local commuter transport, petrol)."
+      },
+      {
+        "categories": [
+          "entertainment"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "same S$1,000 cap",
+        "notes": "PREFERRED CATEGORY 'Entertainment' - MCC 5813 bars, 7832 cinemas, 7922 ticketing. Streaming not included."
+      },
+      {
+        "categories": [
+          "travel_overseas"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "same S$1,000 cap",
+        "notes": "PREFERRED CATEGORY 'Travel' - airlines and hotels only (incl. online bookings). General overseas spend is NOT covered: 0.4 mpd."
+      },
+      {
+        "categories": [
+          "online_shopping"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "same S$1,000 cap",
+        "notes": "PREFERRED CATEGORY 'Fashion' - department stores and apparel/shoe/luggage MCCs, online or in-store. Other online merchants 0.4 mpd."
+      },
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "transport",
+          "online_shopping",
+          "petrol",
+          "entertainment",
+          "travel_overseas",
+          "other"
+        ],
+        "rate": 0.4,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "Base UNI$1 per S$5 = 0.4 mpd on everything not in the chosen category. 'Beauty & Wellness' is the 7th category (not mapped)."
+      }
+    ],
+    "base_rate": 0.4,
+    "exclusions": [
+      "utilities MCC 4900",
+      "bill payments",
+      "insurance",
+      "education, hospitals, government",
+      "NETS",
+      "AXS/EZ-Link/TRANSIT/PayPal/YouTrip",
+      "0% IPP"
+    ],
+    "tiered_logic": "User selects ONE preferred category per quarter (registration required at uob.com.sg/ladys-enrol). Only rules tagged PREFERRED CATEGORY for that one choice apply; everything else is 0.4 mpd. Bonus capped at 1,800 UNI$ (= S$1,000 spend) per calendar month.",
+    "miles_value_note": "UNI$1 = 2 miles (KrisFlyer/Asia Miles, blocks of 10,000 miles); UNI$ expire 2 years after the quarter earned; conversion fee applies. Prototype default assumption: value 1 airline mile at S$0.015 (1.5 cents) - this is NOT a bank figure; make it user-adjustable. Earning below assumes miles = KrisFlyer/Asia Miles-equivalent after conversion.",
+    "source_urls": [
+      "https://www.uob.com.sg/personal/cards/rewards/ladys-card/index.page",
+      "https://www.uob.com.sg/assets/pdfs/ladys-cards-tcs.pdf"
+    ],
+    "source_version": "T&C updated August 2025 (version 1.1)",
+    "source_checked": "2026-09-30",
+    "confidence": "high",
+    "unverified_fields": [
+      "UNI$ conversion fee amount",
+      "annual fee: T&C says S$196.20, a summary of the product page said S$192 - T&C figure used"
+    ]
+  },
+  {
+    "id": "citi-rewards",
+    "name": "Citi Rewards Card",
+    "bank": "Citibank",
+    "type": "miles",
+    "annual_fee_sgd": 196.2,
+    "first_year_fee_waived": true,
+    "annual_fee_notes": "S$196.20 incl. 9% GST; first-year fee waived (bank FAQ).",
+    "min_income_sgd": 30000,
+    "min_income_notes": "S$30,000 Singaporeans/PR.",
+    "rate_unit": "miles_per_sgd",
+    "earn_rules": [
+      {
+        "categories": [
+          "online_shopping"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "eligible SPEND S$ per statement month (9,000 bonus points cap)",
+        "notes": "10 ThankYou points/S$1 on online retail, EXCLUDING mobile-wallet and travel-related transactions (airlines, hotels, car rental, travel agents, MCC 4111/4112/4789 transport)."
+      },
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "transport"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "shared S$1,000 cap",
+        "notes": "ONLY the online part: food delivery, online groceries, ride-hailing paid in-app (4121 is not a travel MCC). In-store dining/groceries earn 0.4. Prototype cannot tell - flag."
+      },
+      {
+        "categories": [
+          "other"
+        ],
+        "rate": 4.0,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": 1000,
+        "cap_applies_to": "shared S$1,000 cap",
+        "notes": "In-store at department stores (5311), apparel, shoes and bags (5611-5699, 5948) also earn 10X. Only that share of 'other'."
+      },
+      {
+        "categories": [
+          "dining",
+          "groceries",
+          "transport",
+          "petrol",
+          "entertainment",
+          "travel_overseas",
+          "other"
+        ],
+        "rate": 0.4,
+        "min_spend_sgd_per_month": null,
+        "cap_sgd_per_month": null,
+        "cap_applies_to": null,
+        "notes": "1 point/S$1 = 0.4 mpd on all other qualifying spend. Travel bookings never earn 10X."
+      }
+    ],
+    "base_rate": 0.4,
+    "exclusions": [
+      "travel-related MCCs (from 10X only)",
+      "mobile-wallet transactions (from 10X only)",
+      "bill payments",
+      "transit-related transactions",
+      "insurance",
+      "education, government",
+      "e-wallet top-ups",
+      "Citi rewards exclusion list"
+    ],
+    "tiered_logic": "No min spend. Bonus 9 points/S$1 capped at 9,000 bonus points per STATEMENT month (= S$1,000 of 10X spend).",
+    "miles_value_note": "ThankYou points valid 60 months from approval. Citi's own Kris+ page treats 10,000 points = 4,000 Citi Miles (2.5 points = 1 mile), so 10 points/S$1 = 4 mpd and 1 point = 0.4 mpd. Transfer fee S$27.25 incl. GST. Prototype default assumption: value 1 airline mile at S$0.015 (1.5 cents) - this is NOT a bank figure; make it user-adjustable. Earning below assumes miles = KrisFlyer/Asia Miles-equivalent after conversion.",
+    "source_urls": [
+      "https://www.citibank.com.sg/credit-cards/rewards/citi-rewards-card",
+      "https://www.citibank.com.sg/credit-cards/rewards/citi-rewards-card/pdf/10x-rewards-promotion-terms-and-conditions-2020.pdf",
+      "https://www.citibank.com.sg/credit-cards/privileges-programs/credit-card-rewards-redemption/kris-plus.html"
+    ],
+    "source_version": "10X T&C document named 2020 but still the one linked from the live product page",
+    "source_checked": "2026-09-30",
+    "confidence": "medium",
+    "unverified_fields": [
+      "ThankYou points to KrisFlyer ratio (derived from Citi's Kris+ equivalence, not a published transfer table)",
+      "exact meaning of 'mobile wallet' exclusion for online payments (e.g. Apple Pay in-app)"
+    ]
+  }
+]

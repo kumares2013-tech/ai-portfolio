@@ -18,6 +18,13 @@ hidden. Cloudflare Worker auth and gating, Stripe billing, an AI "find charts li
 and a 31-lesson video course built by AI agents.
 `Python` `Cloudflare Workers` `Stripe` `Gemini` `Claude Code` · [tradingreps.co](https://tradingreps.co)
 
+### [Card Math](card-finder/): a prototype for a real product problem · [try it live](https://kumares2013-tech.github.io/ai-portfolio/card-finder/)
+Comparison sites ask *what* you spend on, never *how much*, so they can't tell you whether you'd
+clear a card's minimum spend or hit its cap. Type in your month and see your best Singapore cards in
+dollars, with every catch in plain English and a dated plan so you don't lose the sign-up gift. The rules
+for 13 cards come from the banks' own pages, and the maths is checked by tests.
+`JavaScript` `product design` `research`
+
 ### [How I run AI coding agents](case-studies/ai-development-workflow.md)
 *The model is stateless. Your project isn't.* The file-based system (rules, board, handover, agent
 briefs, logs) that keeps multi-week projects on track across sessions and models, and the failures
@@ -49,5 +56,6 @@ I also produced its 100-second animated investor trailer. · [makanbuddy.pages.d
 | Folder | What's in it |
 |---|---|
 | `case-studies/` | Write-ups of real private projects. Architecture, decisions, results. No private code. |
+| `card-finder/` | Card Math: a live prototype, its research-backed card rules (`cards.json`) and its maths tests. |
 | `project-1-rag/` | *In progress:* a small question-answering tool over public documents. |
 | `tools/secret_check.py` | Pre-commit hook that blocks keys, tokens and private paths from ever being pushed. |

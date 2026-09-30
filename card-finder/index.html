@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en-SG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Card Math</title>
+<meta name="description" content="Unofficial concept by Kumares Velasamy: type in your usual month, see which Singapore credit card pays you the most, in dollars.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one narrow column like a phone app; your month on top, your three cards below, the fine print last. */
+:root {
+  --bg: #f3f5f1;
+  --surface: #ffffff;
+  --fg: #16211d;
+  --muted: #4d5a55;
+  --line: #d9dfd9;
+  --accent: #0a6b4b;
+  --accent-soft: #e2f1ea;
+  --warn: #9a4a00;
+  --warn-soft: #fbeedd;
+  --bad: #a3252c;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101614; --surface: #18201d; --fg: #eef3f0; --muted: #b7c3be; --line: #2c3833;
+    --accent: #4fcf9c; --accent-soft: #173a2d; --warn: #f0b36a; --warn-soft: #3a2a15; --bad: #ff8a8f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101614; --surface: #18201d; --fg: #eef3f0; --muted: #b7c3be; --line: #2c3833;
+  --accent: #4fcf9c; --accent-soft: #173a2d; --warn: #f0b36a; --warn-soft: #3a2a15; --bad: #ff8a8f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; overflow-x: hidden; background: var(--bg); color: var(--fg); font: 17px/1.5 var(--body); }
+.wrap { max-width: 640px; margin: 0 auto; padding-inline: 16px; padding-block: 0 48px; }
+.concept { font-size: 14px; color: var(--muted); padding-block: 12px; border-bottom: 1px solid var(--line); }
+.concept b { color: var(--fg); }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(30px, 7vw, 42px); line-height: 1.08; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 22px; font-weight: 700; }
+.lede { color: var(--muted); margin: 10px 0 0; max-width: 60ch; }
+header.hero { padding-block: 28px 8px; }
+section { margin-top: 28px; }
+.label { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+/* your month */
+.month { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 6px 16px; }
+.row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.row:last-child { border-bottom: 0; }
+.row label { font-weight: 600; }
+.row small { grid-column: 1 / -1; color: var(--muted); font-size: 14px; margin-top: -2px; }
+.money { display: flex; align-items: center; gap: 4px; }
+.money span { color: var(--muted); }
+.money input { width: 96px; font: 600 18px var(--body); font-variant-numeric: tabular-nums; text-align: right; padding: 8px 10px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--fg); }
+.money input:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.total { display: flex; justify-content: space-between; font-weight: 700; padding: 12px 16px 0; font-variant-numeric: tabular-nums; }
+.example { font-size: 14px; color: var(--muted); margin-top: 8px; }
+
+.prefs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; align-items: center; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--surface); }
+.seg button { font: 600 15px var(--body); border: 0; background: transparent; color: var(--fg); padding: 9px 14px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.sel { font-size: 15px; color: var(--muted); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.sel select { font: 600 15px var(--body); padding: 7px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--fg); }
+.mv { font-size: 15px; color: var(--muted); display: flex; gap: 6px; align-items: center; }
+.mv input { width: 60px; font: 600 15px var(--body); padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--fg); text-align: right; }
+
+/* results */
+.results { display: grid; gap: 14px; margin-top: 12px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; display: grid; gap: 12px; }
+.card.top { border: 2px solid var(--accent); }
+.card-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.card, .results, .month, section { min-width: 0; }
+.year > span { min-width: 0; }
+.card-head > div { min-width: 0; }
+.rank { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+.card h3 { font-size: 20px; line-height: 1.2; margin-top: 2px; }
+.bank { color: var(--muted); font-size: 15px; }
+.big { text-align: right; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+.big strong { display: block; font: 700 32px/1 var(--display); color: var(--accent); }
+.big span { font-size: 14px; color: var(--muted); }
+.plain { margin: 0; }
+.year { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-variant-numeric: tabular-nums; font-size: 15px;
+  background: var(--bg); border-radius: 10px; padding: 10px 12px; }
+.year .sum { font-weight: 700; border-top: 1px solid var(--line); padding-top: 4px; margin-top: 2px; }
+.year .r { text-align: right; }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.checks li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 6px; font-size: 15px; }
+.checks li > span { min-width: 0; overflow-wrap: anywhere; }
+.ok::before { content: "✓"; color: var(--accent); font-weight: 700; }
+.warn::before { content: "!"; color: var(--warn); font-weight: 800; text-align: center; }
+.warn { background: var(--warn-soft); border-radius: 8px; padding: 4px 6px; }
+.todo::before { content: "→"; color: var(--muted); }
+details { font-size: 15px; }
+summary { cursor: pointer; font-weight: 600; color: var(--muted); }
+.breakdown { width: 100%; border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.breakdown td { padding: 4px 0; border-bottom: 1px solid var(--line); }
+.breakdown td:last-child { text-align: right; }
+.src { font-size: 13px; color: var(--muted); }
+.src a { color: var(--muted); }
+
+.losers { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.losers ul { margin: 8px 0 0; padding-left: 18px; font-size: 15px; }
+.losers li { margin-bottom: 6px; }
+
+.giftform { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: 14px; font-weight: 600; }
+.giftform label { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.giftform input[type=date] { font: 600 16px var(--body); padding: 7px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--fg); }
+.plan { list-style: none; padding: 0; margin: 16px 0; display: grid; gap: 0; }
+.plan li { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.plan li > div { min-width: 0; }
+.plan time { font-weight: 700; font-variant-numeric: tabular-nums; }
+.plan b { display: block; }
+.plan .note { color: var(--muted); font-size: 15px; }
+.plan .late b { color: var(--bad); }
+.btn { font: 700 16px var(--body); background: var(--fg); color: var(--bg); border: 0; border-radius: 999px; padding: 12px 20px; cursor: pointer; }
+.words { display: grid; gap: 10px; }
+.words dt { font-weight: 700; }
+.words dd { margin: 0 0 6px; color: var(--muted); }
+
+.why { border-top: 1px solid var(--line); padding-top: 24px; font-size: 16px; }
+.why p, .why li { max-width: 62ch; }
+.why ol { padding-left: 20px; }
+.foot { font-size: 14px; color: var(--muted); margin-top: 28px; }
+.foot a { color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) {
+  .card { transition: transform .2s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="concept"><b>Unofficial concept</b> by Kumares Velasamy. Not affiliated with MoneySmart or any bank. Card rules taken from each bank's own website on <span id="checked">30 Sept 2026</span>; always confirm with the bank before you apply.</div>
+
+  <header class="hero">
+    <h1>Which card pays you the most for how you already spend?</h1>
+    <p class="lede">Type in a normal month. You get your three best cards, what each one would actually give you in dollars, and every catch in plain English.</p>
+  </header>
+
+  <section aria-labelledby="m-h">
+    <div class="label" id="m-h">Your usual month</div>
+    <div class="month" id="month"></div>
+    <div class="total"><span>Total on the card</span><span id="total">$0</span></div>
+    <p class="example" id="exampleNote">These are example numbers. Change them to yours; results update as you type.</p>
+    <div class="prefs">
+      <div class="seg" role="group" aria-label="What you want back">
+        <button type="button" id="p-cash" aria-pressed="true">Cash back</button>
+        <button type="button" id="p-miles" aria-pressed="false">Air miles</button>
+        <button type="button" id="p-any" aria-pressed="false">Either</button>
+      </div>
+      <label class="sel" for="pay">In shops I usually
+        <select id="pay"><option value="phone">pay with my phone</option><option value="tap">tap my card</option><option value="insert">insert my card</option></select></label>
+      <label class="sel" for="income">My yearly income
+        <select id="income"><option value="29999">under $30,000</option><option value="64999" selected>$30,000 to $64,999</option><option value="79999">$65,000 to $79,999</option><option value="999999">$80,000 or more</option></select></label>
+      <label class="mv" id="mvWrap" hidden>Count 1 mile as <input id="mileValue" type="number" step="0.1" min="0.5" max="4" value="1.5" inputmode="decimal"> cents</label>
+    </div>
+  </section>
+
+  <section aria-labelledby="r-h">
+    <h2 id="r-h">Your best three</h2>
+    <div class="results" id="results"></div>
+  </section>
+
+  <section class="losers" id="losersBox">
+    <div class="label">Why the others lost</div>
+    <ul id="losers"></ul>
+  </section>
+
+  <section aria-labelledby="g-h" class="gift">
+    <h2 id="g-h">After you apply: don't lose your sign-up gift</h2>
+    <p class="lede">Gifts are where people get burned. They miss a spend deadline, or a claim form they didn't know about, and their account says "pending" for months. Here are the dates, worked out from your own spending.</p>
+    <div class="giftform">
+      <label for="g-date">Card approved on <input id="g-date" type="date"></label>
+      <label for="g-min">Gift needs <span class="money"><span>$</span><input id="g-min" type="number" min="0" step="50" value="500" inputmode="numeric"></span> of spend</label>
+    </div>
+    <p class="example">Typical rule: spend the amount between the day the card is opened and the end of the following calendar month. Check your own promotion's terms; the numbers above are editable.</p>
+    <ol class="plan" id="plan"></ol>
+    <button type="button" id="ics" class="btn">Put these dates in my calendar</button>
+    <p class="example" id="icsNote" hidden>Downloaded. Open the file to add the reminders.</p>
+  </section>
+
+  <section aria-labelledby="w-h">
+    <h2 id="w-h">The words, in plain English</h2>
+    <dl class="words">
+      <dt>Minimum spend</dt><dd>The card only pays its good rate if you put at least this much on it in a month. Miss it by $1 and you usually get almost nothing.</dd>
+      <dt>Cap</dt><dd>The most the card will pay you each month, however much you spend. Spending past the cap earns you nothing extra.</dd>
+      <dt>Miles per dollar (mpd)</dt><dd>How many air miles you get for each S$1. 4 mpd on $500 is 2,000 miles.</dd>
+      <dt>Annual fee waiver</dt><dd>Most banks waive the fee in year one. After that you often have to call and ask. It is usually granted, but it is not promised.</dd>
+      <dt>Sign-up gift</dt><dd>Left out of the numbers above on purpose. Gifts change every few weeks and come with their own conditions.</dd>
+    </dl>
+  </section>
+
+  <section class="why" aria-labelledby="y-h">
+    <h2 id="y-h">Why this exists</h2>
+    <p>Comparison sites ask <em>what</em> you spend on. Almost none ask <em>how much</em>. Without the amounts, a site can't tell you whether you'd clear a minimum spend or blow through a cap, which is exactly what decides whether a card is any good for you. So people end up posting their monthly spending on Reddit and asking strangers which card to get.</p>
+    <p>This page does that sum for them, and shows the working.</p>
+    <p><a href="https://github.com/kumares2013-tech/ai-portfolio/tree/main/card-finder">How it was built, what it assumes, and how I'd test it with real users</a></p>
+  </section>
+
+  <p class="foot">Built by Kumares Velasamy with AI coding agents. Numbers are estimates from public card terms and are not financial advice. <a href="https://github.com/kumares2013-tech/ai-portfolio">Portfolio</a></p>
+</div>
+
+<script src="engine.js"></script>
+<script>
+const CHECKED = "30 Sept 2026";
+const state = { spend: Object.fromEntries(CATS.map(c => [c.id, c.ex])), pref: "cashback", mileCents: 1.5, pay: "phone", income: 64999 };
+
+function renderMonth() {
+  const box = document.getElementById("month");
+  box.innerHTML = CATS.map(c => `
+    <div class="row">
+      <label for="s-${c.id}">${c.name}</label>
+      <div class="money"><span>$</span><input id="s-${c.id}" type="number" min="0" step="10" inputmode="numeric" value="${state.spend[c.id]}" aria-describedby="h-${c.id}"></div>
+      <small id="h-${c.id}">${c.hint}</small>
+    </div>`).join("");
+  for (const c of CATS) {
+    document.getElementById("s-" + c.id).addEventListener("input", e => {
+      state.spend[c.id] = Math.max(0, Number(e.target.value) || 0);
+      document.getElementById("exampleNote").textContent = "Your numbers. Results update as you type.";
+      render();
+    });
+  }
+}
+
+function render() {
+  const total = Object.values(state.spend).reduce((a, b) => a + b, 0);
+  document.getElementById("total").textContent = fmt(total);
+  const opts = { pay: state.pay, mileCents: state.mileCents };
+  const pool = CARDS.filter(c => state.pref === "any" || c.type === state.pref);
+  const all = pool.map(c => evaluate(c, state.spend, opts));
+  const ok = all.filter(r => r.card.income <= state.income).sort((a, b) => b.yearTwo - a.yearTwo);
+  const tooHigh = all.filter(r => r.card.income > state.income);
+  const top = ok.slice(0, 3), rest = ok.slice(3);
+  document.getElementById("results").innerHTML = top.length ? top.map((r, i) => cardHTML(r, i)).join("") : `<p class="plain">No card in this group accepts that income. Try "Either".</p>`;
+  const losers = rest.map(r => `<li><b>${r.card.name}</b>: ${fmt(r.dollars, 2)} a month. ${loserReason(r, top[0])}</li>`)
+    .concat(tooHigh.map(r => `<li><b>${r.card.name}</b>: needs income of ${fmt(r.card.income)} a year${r.card.bank === "HSBC" ? " for new HSBC customers" : ""}.</li>`));
+  document.getElementById("losers").innerHTML = losers.join("");
+  document.getElementById("losersBox").hidden = !losers.length;
+}
+
+function loserReason(r, best) {
+  const w = r.checks.find(c => c.kind === "warn");
+  if (w) return w.text;
+  return `${fmt(best.dollars - r.dollars, 2)} a month less than the ${best.card.name} for the way you spend.`;
+}
+
+function cardHTML(r, i) {
+  const c = r.card;
+  const unit = c.type === "miles" ? `${Math.round(r.earned).toLocaleString()} miles` : "cash back";
+  const feeLine = !c.fee
+    ? `<span>Annual fee</span><span class="r">none</span>`
+    : c.waivedY1 ? `<span>Annual fee (${fmt(c.fee, 2)} from year 2)</span><span class="r">waived</span>`
+    : `<span>Annual fee</span><span class="r">−${fmt(c.fee, 2)}</span>`;
+  const checks = [...r.checks, ...(c.mustDo || []).map(t => ({ kind: "todo", text: t }))];
+  return `
+  <article class="card ${i === 0 ? "top" : ""}">
+    <div class="card-head">
+      <div><div class="rank">${["Best for you", "Second", "Third"][i]}</div><h3>${c.name}</h3><div class="bank">${c.bank} · needs ${fmt(c.income)} a year</div></div>
+      <div class="big"><strong>${fmt(r.dollars, 2)}</strong><span>a month · ${unit}</span></div>
+    </div>
+    <p class="plain">${c.plain}</p>
+    <div class="year">
+      <span>12 months of this</span><span class="r">${fmt(r.dollars * 12, 0)}</span>
+      ${feeLine}
+      <span class="sum">What you'd actually get in year one</span><span class="r sum">${fmt(r.yearOne, 0)}</span>
+    </div>
+    <ul class="checks">${checks.map(k => `<li class="${k.kind}"><span>${k.text}</span></li>`).join("")}</ul>
+    <details><summary>Show the working</summary>
+      <table class="breakdown">${r.lines.map(l => `<tr><td>${l.label} (${fmt(l.spend)})</td><td>${c.type === "miles" ? Math.round(l.value).toLocaleString() + " mi" : fmt(l.value, 2)}</td></tr>`).join("")}</table>
+      ${c.type === "miles" ? `<p class="src">Miles valued at ${state.mileCents} cents each. You can change that above.</p>` : ""}
+      <p class="src">${c.caveat} Source: <a href="${c.source}" target="_blank" rel="noopener">${c.bank}'s own card page</a>, checked ${CHECKED}.</p>
+    </details>
+  </article>`;
+}
+
+function setPref(p) {
+  state.pref = p;
+  for (const [id, v] of [["p-cash", "cashback"], ["p-miles", "miles"], ["p-any", "any"]])
+    document.getElementById(id).setAttribute("aria-pressed", String(v === p));
+  document.getElementById("mvWrap").hidden = p === "cashback";
+  render();
+}
+document.getElementById("p-cash").onclick = () => setPref("cashback");
+document.getElementById("p-miles").onclick = () => setPref("miles");
+document.getElementById("p-any").onclick = () => setPref("any");
+document.getElementById("pay").onchange = e => { state.pay = e.target.value; render(); };
+document.getElementById("income").onchange = e => { state.income = Number(e.target.value); render(); };
+document.getElementById("mileValue").addEventListener("input", e => { state.mileCents = Number(e.target.value) || 1.5; render(); });
+
+/* ---- gift plan ---- */
+const DAY = 86400000;
+const dfmt = d => d.toLocaleDateString("en-SG", { day: "numeric", month: "short" });
+function giftPlan() {
+  const v = document.getElementById("g-date").value;
+  const start = v ? new Date(v + "T00:00:00") : new Date();
+  const need = Math.max(0, Number(document.getElementById("g-min").value) || 0);
+  const perDay = Object.values(state.spend).reduce((a, b) => a + b, 0) / 30;
+  const deadline = new Date(start.getFullYear(), start.getMonth() + 2, 0);     // end of the following calendar month
+  const hitDays = perDay > 0 ? Math.ceil(need / perDay) : Infinity;
+  const hit = new Date(start.getTime() + hitDays * DAY);
+  const onTime = hit <= deadline;
+  const spare = Math.round((deadline - hit) / DAY);
+  const steps = [
+    { d: start, t: "Save the bank's reference number", n: "It's in the approval email or SMS, often called a URN or application reference. The comparison site can't look it up for you, and the claim needs it." },
+    { d: new Date(start.getTime() + 2 * DAY), t: "Submit the gift claim form", n: "Many gifts need a separate claim form within a set window after you apply. Do it now, while the reference number is in front of you." },
+    { d: hit, t: onTime ? `You'll reach ${fmt(need)} of spend` : `At your pace you reach ${fmt(need)} too late`,
+      n: onTime ? `At your usual ${fmt(perDay * 30)} a month. That's ${spare} day${spare === 1 ? "" : "s"} before the deadline.` : `You'd need about ${fmt(Math.ceil(need / Math.max(1, (deadline - start) / DAY) * 30))} a month to make it. Move more of your usual spending onto this card, or pick a smaller gift.`, late: !onTime },
+    { d: deadline, t: `Deadline: ${fmt(need)} spent`, n: "Only purchases count. Bills, top-ups and some payments are often excluded. Check the list in the promotion's terms." },
+    { d: new Date(deadline.getTime() + 60 * DAY), t: "Check the gift has arrived", n: "Gifts are often paid a few months after the deadline. If it still says pending, contact them with your reference number." },
+  ];
+  document.getElementById("plan").innerHTML = steps.map(s =>
+    `<li class="${s.late ? "late" : ""}"><time>${isFinite(s.d) ? dfmt(s.d) : "never"}</time><div><b>${s.t}</b><span class="note">${s.n}</span></div></li>`).join("");
+  return steps;
+}
+function icsDate(d) { return d.toISOString().slice(0, 10).replace(/-/g, ""); }
+document.getElementById("ics").onclick = () => {
+  const steps = giftPlan().filter(s => isFinite(s.d));
+  const ev = steps.map((s, i) => [
+    "BEGIN:VEVENT", `UID:cardmath-${Date.now()}-${i}@kumares`, `DTSTAMP:${icsDate(new Date())}T000000Z`,
+    `DTSTART;VALUE=DATE:${icsDate(s.d)}`, `SUMMARY:Card gift: ${s.t}`, `DESCRIPTION:${s.n.replace(/[,;]/g, "\\$&")}`, "END:VEVENT"].join("\r\n"));
+  const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Card Math//EN", ...ev, "END:VCALENDAR"].join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
+  a.download = "card-gift-reminders.ics";
+  a.click();
+  document.getElementById("icsNote").hidden = false;
+};
+document.getElementById("g-date").valueAsDate = new Date();
+document.getElementById("g-date").addEventListener("input", giftPlan);
+document.getElementById("g-min").addEventListener("input", giftPlan);
+const _render = render;
+render = function () { _render(); giftPlan(); };
+
+document.getElementById("checked").textContent = CHECKED;
+renderMonth();
+render();
+</script>
+</body>
+</html>

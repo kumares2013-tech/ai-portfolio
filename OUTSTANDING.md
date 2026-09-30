@@ -1,17 +1,21 @@
 # OUTSTANDING
 
-## Now
-- [ ] Owner reads the Trading Reps case study and the README, and corrects anything that is wrong
-- [ ] Owner answers the open questions in PORTFOLIO_CONTEXT.md (public email, LinkedIn, trailer link, 5 or 6 years)
-- [ ] Owner adds 3-4 screenshots of the Trading Reps app to `images/`
-- [ ] Owner creates the GitHub account and the empty public repo `ai-portfolio`
-- [ ] First push
+## Now (30 Sept 2026)
+- [ ] card-finder: put in the bank-checked card rules, test the numbers, publish on GitHub Pages
+- [ ] MoneySmart: apply on their own Greenhouse page (new resume + note + prototype link). Closes 21 Oct
+- [ ] LinkedIn profile (owner pastes from _private/resume/LINKEDIN_PASTE.txt)
+- [ ] Three LinkedIn messages with the prototype link: founder/CEO, product lead, head of people. Check each person's current title first
+
+## Strategy (owner, 30 Sept): a prototype per company
+For jobs whose ad or product shows a real problem, build a one-evening prototype that fixes it and send
+it with the application. One company at a time, quality over count. Targets are researched in
+_private/jobs/PROTOTYPE_TARGETS.md. Next up is probably BJAK or Reap; the research decides.
 
 ## Next
-- [ ] project-1-rag: a small question-answering tool over public documents, under ~200 lines, built
-      one step at a time so the owner can explain every file
-- [ ] Owner practises: "quiz me on this like an interviewer" for each case study
+- [ ] Owner confirms the Auroraverse months (MyCareersFuture profile gap 2019-2024)
+- [ ] Owner decides on "Supabase, Next.js, React" in the MyCareersFuture description
+- [ ] NCS AI Native Builder closes 7 Oct; uParcel FDE closes 12 Oct
 
 ## Later
-- [ ] IRONFLOW case study (high level only, no code)
-- [ ] Pin the repo on the GitHub profile; add the link to the resume and LinkedIn
+- [ ] project-1-rag
+- [ ] IRONFLOW case study
