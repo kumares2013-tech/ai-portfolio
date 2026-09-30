@@ -1,0 +1,22 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# data never leaves the machine
+data/
+*.parquet
+*.csv
+*.sqlite
+*.db
+
+# python
+__pycache__/
+.venv/
+.pytest_cache/
+
+# private working notes
+PORTFOLIO_CONTEXT.md
+_private/
