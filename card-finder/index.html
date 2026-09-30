@@ -21,6 +21,7 @@
   --warn: #9a4a00;
   --warn-soft: #fbeedd;
   --bad: #a3252c;
+  --bad-soft: #fbe9ea;
   --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body: "Figtree", "Segoe UI", system-ui, sans-serif;
   color-scheme: light;
@@ -28,13 +29,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #101614; --surface: #18201d; --fg: #eef3f0; --muted: #b7c3be; --line: #2c3833;
-    --accent: #4fcf9c; --accent-soft: #173a2d; --warn: #f0b36a; --warn-soft: #3a2a15; --bad: #ff8a8f;
+    --accent: #4fcf9c; --accent-soft: #173a2d; --warn: #f0b36a; --warn-soft: #3a2a15; --bad: #ff8a8f; --bad-soft: #3a1c1e;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #101614; --surface: #18201d; --fg: #eef3f0; --muted: #b7c3be; --line: #2c3833;
-  --accent: #4fcf9c; --accent-soft: #173a2d; --warn: #f0b36a; --warn-soft: #3a2a15; --bad: #ff8a8f;
+  --accent: #4fcf9c; --accent-soft: #173a2d; --warn: #f0b36a; --warn-soft: #3a2a15; --bad: #ff8a8f; --bad-soft: #3a1c1e;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -51,14 +52,20 @@ header.hero { padding-block: 28px 8px; }
 section { margin-top: 28px; }
 .label { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 
-/* problem / fix */
-.fix { margin-top: 20px; }
-.fixgrid { display: grid; grid-template-columns: 1fr 1fr; margin-top: 8px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
-.fixgrid > * { margin: 0; padding: 10px 14px; font-size: 15px; line-height: 1.4; border-top: 1px solid var(--line); min-width: 0; }
-.fixgrid .fh { border-top: 0; font-weight: 700; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; }
-.fixgrid > :nth-child(odd) { color: var(--muted); }
-.fixgrid > :nth-child(even) { background: var(--accent-soft); }
-.fixgrid .fh:nth-child(2) { color: var(--accent); }
+/* pain points */
+.fix h2 { font-size: 20px; }
+.pains { display: grid; gap: 12px; margin-top: 12px; }
+.pain { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+.pain > div { padding: 14px 16px; min-width: 0; display: grid; gap: 6px; align-content: start; }
+.pain h3 { font-size: 18px; line-height: 1.25; }
+.pain p { margin: 0; font-size: 15px; line-height: 1.45; }
+.pp { background: var(--bad-soft); }
+.pf { background: var(--accent-soft); }
+.pain blockquote { margin: 2px 0 0; padding-left: 10px; border-left: 3px solid var(--bad); font-size: 14px; color: var(--muted); font-style: italic; }
+.tag { justify-self: start; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+.tag.bad { background: var(--bad); color: var(--surface); }
+.tag.good { background: var(--accent); color: var(--surface); }
+@media (max-width: 560px) { .pain { grid-template-columns: 1fr; } }
 
 /* your month */
 .month { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 6px 16px; }
@@ -156,17 +163,30 @@ summary { cursor: pointer; font-weight: 600; color: var(--muted); }
   </header>
 
   <section class="fix" aria-labelledby="fix-h">
-    <h2 id="fix-h" class="label">The problem, and what this page does about it</h2>
-    <div class="fixgrid">
-      <div class="fh">Comparison sites today</div><div class="fh">This page</div>
-      <p>Show you <b>80+ cards</b> and let you sort them.</p>
-      <p>Checks every card against <b>your</b> spending and shows the <b>three that pay you most</b>, plus one line on why each of the others lost.</p>
-      <p>Describe rewards as <b>"S$1 = 20X Points"</b> or "up to 10%".</p>
-      <p>Tells you <b>dollars a month</b>, and what's left in year one after the annual fee.</p>
-      <p>Put minimum spends and caps in the <b>fine print</b>.</p>
-      <p>Checks them against your numbers: <b>"You'd hit the cap, so $69 of it is lost."</b></p>
-      <p>Let you find out about <b>gift claim forms and deadlines</b> later.</p>
-      <p>Gives you a <b>dated plan</b> for the gift, straight into your calendar.</p>
+    <h2 id="fix-h">Four pain points in choosing a card today, and what this prototype fixes</h2>
+    <div class="pains">
+      <article class="pain">
+        <div class="pp"><span class="tag bad">Pain 1</span><h3>80+ cards, and no answer for you</h3>
+          <p>Comparison sites list every card and let you sort them. None of them tells you which card is best for the way <em>you</em> spend.</p>
+          <blockquote>First-time applicants post their monthly spending line by line on r/singaporefi and ask strangers which card to get.</blockquote></div>
+        <div class="pf"><span class="tag good">Fixed</span><p>Type your month in once. Every card is checked against it. You get your <b>top three</b>, and one line on why each of the other cards lost.</p></div>
+      </article>
+      <article class="pain">
+        <div class="pp"><span class="tag bad">Pain 2</span><h3>Rewards written in code</h3>
+          <p>Rewards are shown as "S$1 = 20X Points (8 miles)… for cardholders who maintain at least S$50,000 average daily balance". A first-timer can't turn that into money.</p></div>
+        <div class="pf"><span class="tag good">Fixed</span><p><b>Dollars a month</b>, and what you actually keep in year one after the annual fee. Miles are converted at a value you choose.</p></div>
+      </article>
+      <article class="pain">
+        <div class="pp"><span class="tag bad">Pain 3</span><h3>The catch is in the fine print</h3>
+          <p>Minimum spends and caps decide whether a card pays you, and they sit in the terms. Miss an $800 minimum by $1 and a "6%" card pays 0.25%.</p></div>
+        <div class="pf"><span class="tag good">Fixed</span><p>Every minimum and cap is checked against <b>your</b> numbers, in plain English: <b>"You'd hit the cap, so $69 of it is lost."</b></p></div>
+      </article>
+      <article class="pain">
+        <div class="pp"><span class="tag bad">Pain 4</span><h3>The sign-up gift never arrives</h3>
+          <p>Gifts need a spend target by a deadline, the bank's reference number and a separate claim form. People find out too late.</p>
+          <blockquote>"it still says 'Pending Gift Qualification'", from a user on r/singaporefi (Aug 2026) who had already met the spend.</blockquote></div>
+        <div class="pf"><span class="tag good">Fixed</span><p>A <b>dated plan</b> worked out from your own spending pace: the reference number to keep, the claim step, the day you'll hit the target and the deadline. One tap adds them to your calendar.</p></div>
+      </article>
     </div>
   </section>
 
