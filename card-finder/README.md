@@ -1,11 +1,11 @@
-# Card Math: MoneySmart credit card prototype
+# Card Math: a credit card prototype
 
 **Live:** https://kumares2013-tech.github.io/ai-portfolio/card-finder/
-*Built for my AI Builder application at MoneySmart. Unofficial concept by Kumares Velasamy, not affiliated with MoneySmart or any bank.*
+*Unofficial concept by Kumares Velasamy. Not affiliated with any bank or comparison site.*
 
 ## The problem I picked
 
-MoneySmart's AI Builder job ad describes comparison journeys that "feel heavier than they should:
+A Singapore comparison site's own job ad describes comparison journeys that "feel heavier than they should:
 long forms, jargon, and decisions most people would rather not think about". I looked at the
 credit card journey, because that's where the jargon is densest and where the stress carries on
 *after* the click.

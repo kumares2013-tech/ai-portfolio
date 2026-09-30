@@ -18,9 +18,7 @@ hidden. Cloudflare Worker auth and gating, Stripe billing, an AI "find charts li
 and a 31-lesson video course built by AI agents.
 `Python` `Cloudflare Workers` `Stripe` `Gemini` `Claude Code` · [tradingreps.co](https://tradingreps.co)
 
-### [Card Math: MoneySmart credit card prototype](card-finder/) · [try it live](https://kumares2013-tech.github.io/ai-portfolio/card-finder/)
-*Built for my AI Builder application at MoneySmart. An unofficial concept, not affiliated with MoneySmart.*
-
+### [Card Math: a credit card prototype](card-finder/) · [try it live](https://kumares2013-tech.github.io/ai-portfolio/card-finder/)
 Comparison sites ask *what* you spend on, never *how much*, so they can't tell you whether you'd
 clear a card's minimum spend or hit its cap. Type in your month and see your best Singapore cards in
 dollars, with every catch in plain English and a dated plan so you don't lose the sign-up gift. The rules
