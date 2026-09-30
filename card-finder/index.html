@@ -51,6 +51,15 @@ header.hero { padding-block: 28px 8px; }
 section { margin-top: 28px; }
 .label { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 
+/* problem / fix */
+.fix { margin-top: 20px; }
+.fixgrid { display: grid; grid-template-columns: 1fr 1fr; margin-top: 8px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+.fixgrid > * { margin: 0; padding: 10px 14px; font-size: 15px; line-height: 1.4; border-top: 1px solid var(--line); min-width: 0; }
+.fixgrid .fh { border-top: 0; font-weight: 700; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; }
+.fixgrid > :nth-child(odd) { color: var(--muted); }
+.fixgrid > :nth-child(even) { background: var(--accent-soft); }
+.fixgrid .fh:nth-child(2) { color: var(--accent); }
+
 /* your month */
 .month { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 6px 16px; }
 .row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding-block: 12px; border-bottom: 1px solid var(--line); }
@@ -145,6 +154,21 @@ summary { cursor: pointer; font-weight: 600; color: var(--muted); }
     <h1>Which card pays you the most for how you already spend?</h1>
     <p class="lede">Type in a normal month. You get your three best cards, what each one would actually give you in dollars, and every catch in plain English.</p>
   </header>
+
+  <section class="fix" aria-labelledby="fix-h">
+    <h2 id="fix-h" class="label">The problem, and what this page does about it</h2>
+    <div class="fixgrid">
+      <div class="fh">Comparison sites today</div><div class="fh">This page</div>
+      <p>Show you <b>80+ cards</b> and let you sort them.</p>
+      <p>Checks every card against <b>your</b> spending and shows the <b>three that pay you most</b>, plus one line on why each of the others lost.</p>
+      <p>Describe rewards as <b>"S$1 = 20X Points"</b> or "up to 10%".</p>
+      <p>Tells you <b>dollars a month</b>, and what's left in year one after the annual fee.</p>
+      <p>Put minimum spends and caps in the <b>fine print</b>.</p>
+      <p>Checks them against your numbers: <b>"You'd hit the cap, so $69 of it is lost."</b></p>
+      <p>Let you find out about <b>gift claim forms and deadlines</b> later.</p>
+      <p>Gives you a <b>dated plan</b> for the gift, straight into your calendar.</p>
+    </div>
+  </section>
 
   <section aria-labelledby="m-h">
     <div class="label" id="m-h">Your usual month</div>
